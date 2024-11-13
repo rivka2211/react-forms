@@ -3,23 +3,15 @@ import { TaskType } from "../type"
 
 const StateForm = ({ addToList }: { addToList: Function }) => {
 
-    const emptyTask = { des: '',date:new Date, id: "" }
+    const emptyTask = { des: '',date:"", id: "" }
 
     const [formData, setFormData] = useState<TaskType>(emptyTask)
 
-    // const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    //     const { id, value } = e.target
-    //     setFormData({ ...formData, [id]: value })  
-    // }
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const { id, value } = e.target
+        setFormData({ ...formData, [id]: value })  
+    }
 
-    const handleChange = (e: { target: { id: any; value: any } }) => {
-        const { id, value } = e.target;
-        setFormData({
-            ...formData,
-            [id]: value
-        });
-    };
-    
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
@@ -37,8 +29,8 @@ const StateForm = ({ addToList }: { addToList: Function }) => {
                     onChange={handleChange}
                 />
                 <input type='text'
-                    id='name'
-                    placeholder='name'
+                    id='des'
+                    placeholder='description'
                     value={formData.des}
                     onChange={handleChange}
                 />

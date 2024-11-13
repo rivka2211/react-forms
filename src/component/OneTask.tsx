@@ -3,27 +3,20 @@ import { TaskType } from "../type"
 const OneTask=({task}:{task:TaskType})=>{
 
 const color=()=>{
+    let dayes = Math.floor((Date.parse(task.date.toString()) - Date.now()) / (24 * 3600 * 1000))
 
-    const currentDate = new Date();
-    currentDate.setDate(currentDate.getDate() + 3);
-
-    console.log("current+3 "+currentDate.getDate());
-    console.log("task.date "+task.date.getDate());
-
-    let d=new Date(task.date)
-
-    if(d.getDate()==Date.now())
+    if(dayes==-1)
         return "red"
-       if(Date.now()<d.getDate()&&d.getDate()<currentDate.getDate())
+       if(dayes<3&&dayes>=0)
         return "orange"
-    return "rgba(216, 151, 200,0.7)"
+    return "lightblue"
 }
 
     return(
         <>
          <div style={{ border: '1px solid black',backgroundColor:color(),margin:"5px",padding:'5px'}}>
             <div>des: {task.des}</div>
-            <div>date: {task.date.getDate()}</div>
+            <div>date: {task.date.toString()}</div>
          </div>
         </>
     )
