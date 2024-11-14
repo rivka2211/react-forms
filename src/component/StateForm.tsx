@@ -1,5 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react"
 import { TaskType } from "../type"
+import {date, number,object,string} from 'yup'
+
 
 const StateForm = ({ addToList }: { addToList: Function }) => {
 
@@ -7,9 +9,18 @@ const StateForm = ({ addToList }: { addToList: Function }) => {
 
     const [formData, setFormData] = useState<TaskType>(emptyTask)
 
+    const schema=object().shape(
+        {
+            id:number().required(),
+            des:string(),
+            date:date().required()
+        }
+    )
+    
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { id, value } = e.target
-        setFormData({ ...formData, [id]: value })  
+        setFormData({ ...formData, [id]: value }) 
+        schema.validate(formData) 
     }
 
 
