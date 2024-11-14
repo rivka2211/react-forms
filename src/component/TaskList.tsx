@@ -2,6 +2,7 @@ import { useState } from "react"
 import { TaskType } from "../type"
 import OneTask from "./OneTask"
 import StateForm from "./StateForm"
+import RefForm from "./RefForm"
 
 const TaskList = () => {
 
@@ -17,7 +18,8 @@ const TaskList = () => {
                     {taskList.map(item => <OneTask key={item.id} task={item} />)}
                 </div>
                 <div id="form">
-                    <StateForm addToList={handleAdd} />
+                    {/* <StateForm addToList={handleAdd} /> */}
+                    <RefForm addToList={handleAdd}/>
                 </div>
             </main>
         </>
